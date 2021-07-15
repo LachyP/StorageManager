@@ -1,0 +1,4 @@
+io/flutter/plugins/GeneratedPluginRegistrant.java
+ io.flutter.plugins.GeneratedPluginRegistrant
+com/example/storage_manager/BuildConfig.java
+ com.example.storage_manager.BuildConfig
