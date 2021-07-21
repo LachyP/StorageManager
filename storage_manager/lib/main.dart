@@ -1,4 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:barcode_scan/barcode_scan.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(MyApp());
@@ -58,6 +64,36 @@ class _MyHomePageState extends State<MyHomePage> {
     //  _counter++;
    // });
   //}
+  String result = "Hey there !";
+  Future _scanQR() async{
+    try{
+      String qrResult = await BarcodeScanner.scan().toString();
+      setState(() {
+        result = qrResult;
+      });
+    } on PlatformException catch (ex){
+      if(ex.code == BarcodeScanner.cameraAccessDenied){
+        setState(() {
+          result = "Camera Permission was denied";
+        });
+      }
+      else{
+        setState(() {
+          result = "unknown error $ex";
+        });
+      }
+    } on FormatException{
+      setState(() {
+        result = "You pressed the back button before scanning anything";
+      });
+    }
+    catch (ex){
+      setState(() {
+        result = "Unknown Error $ex";
+      });
+    }
+  }
+
   int _selectedPage = 0;
   final List<Widget> pageList = [
     LandingPage(),
@@ -103,8 +139,9 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton.extended(
         icon: Icon(Icons.camera_alt),
         label: Text("Scan"),
-        onPressed: () {},
-      )
+        onPressed: _scanQR,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
   void _onItemTapped(int index) {
