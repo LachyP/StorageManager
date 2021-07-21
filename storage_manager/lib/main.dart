@@ -62,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<Widget> pageList = [
     LandingPage(),
     SearchPage(),
-    ScanPage(),
+    //ScanPage(),
     NewCratePage(),
   ];
   @override
@@ -87,10 +87,10 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: Icon(Icons.search),
             title: Text('Search Item'),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.camera_alt_outlined),
-            title: Text('Scan Code'),
-          ),
+          //BottomNavigationBarItem(
+          //  icon: Icon(Icons.camera_alt_outlined),
+          //  title: Text('Scan Code'),
+          //),
           BottomNavigationBarItem(
             icon: Icon(Icons.create),
             title: Text('Add New'),
@@ -99,6 +99,11 @@ class _MyHomePageState extends State<MyHomePage> {
           currentIndex: _selectedPage,
           selectedItemColor: Colors.black,
           onTap: _onItemTapped,
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        icon: Icon(Icons.camera_alt),
+        label: Text("Scan"),
+        onPressed: () {},
       )
     );
   }
