@@ -97,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedPage = 0;
   final List<Widget> pageList = [
     LandingPage(),
-    SearchPage(),
+    SearchPage( passedText: "hello world" ),
     //ScanPage(),
     NewCratePage(),
   ];
@@ -174,6 +174,12 @@ class _LandingPageState extends State<LandingPage> {
 
 //Search by item page
 class SearchPage extends StatefulWidget {
+  final String passedText;
+  const SearchPage(
+  {Key? key, required this.passedText})
+      : super(key: key);
+
+
   @override
   _SearchPageState createState() => _SearchPageState();
 }
@@ -183,7 +189,7 @@ class _SearchPageState extends State<SearchPage> {
     return Scaffold(
       body: Center(
         child: Text(
-          'search page',
+          'search page ${widget.passedText}',
         ),
       ),
     );
