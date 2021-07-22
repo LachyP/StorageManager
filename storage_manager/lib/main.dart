@@ -6,6 +6,9 @@ import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 
+String result = "hey there!";
+
+
 void main() {
   runApp(MyApp());
 }
@@ -64,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
     //  _counter++;
    // });
   //}
-  String result = "Hey there !";
+  //String result = "Hey there !";
   Future _scanQR() async{
     try{
       String qrResult = await BarcodeScanner.scan().toString();
@@ -97,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedPage = 0;
   final List<Widget> pageList = [
     LandingPage(),
-    SearchPage( passedText: "hello world" ),
+    SearchPage( passedText: result),
     //ScanPage(),
     NewCratePage(),
   ];
